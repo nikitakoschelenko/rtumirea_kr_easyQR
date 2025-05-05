@@ -1,4 +1,5 @@
 #include <QMessageBox>
+#include <QColorDialog>
 #include <QClipboard>
 #include <QFileDialog>
 #include <QStandardPaths>
@@ -38,6 +39,17 @@ QImage MainWindow::get_graphicsView_result_scene_image() {
 
     // возвращаем изображение
     return image;
+}
+
+void MainWindow::on_pushButton_color_clicked() {
+    QColor color = QColorDialog::getColor(Qt::black, this, "Выберите цвет");
+
+    if (color.isValid()) {
+        ui->label_color_value->setText(color.name());
+        ui->pushButton_color->setStyleSheet("QPushButton { background-color : " + color.name() + "; }");
+
+        currentColor = color.name();
+    }
 }
 
 
@@ -89,7 +101,7 @@ void MainWindow::on_pushButton_generate_clicked() {
         for (int j = 0; j < qrSize; j++) {
             bool currentModule = qr.getModule(i, j);
 
-            QColor color = currentModule ? Qt::black : Qt::white;
+            QColor color = currentModule ? currentColor : Qt::white;
 
             scene->addRect(i*scale, j*scale, scale, scale, Qt::NoPen, QBrush(color));
         }

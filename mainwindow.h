@@ -24,8 +24,13 @@ private slots:
 
     void on_pushButton_save_clicked();
 
+    void on_pushButton_color_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    // цвет модулей
+    QColor currentColor = Qt::black;
 
     QImage get_graphicsView_result_scene_image();
 };
