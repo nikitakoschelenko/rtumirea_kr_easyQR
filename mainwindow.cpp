@@ -67,7 +67,7 @@ void MainWindow::on_pushButton_generate_clicked() {
     }
 
     // выбираем уровень коррекции ошибок
-    QrCode::Ecc ecc = QrCode::Ecc::HIGH;
+    QrCode::Ecc ecc = QrCode::Ecc::QUARTILE;
 
     if (ui->radioButton_ecc_L->isChecked()) {
         ecc = QrCode::Ecc::LOW;
